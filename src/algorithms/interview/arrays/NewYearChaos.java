@@ -1,19 +1,14 @@
-package algorithms.interview;
+package algorithms.interview.arrays;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+import java.util.Scanner;
 
 
 /**
  * Created by Mohammed Fathy @ 04/08/2018
  * dev.mfathy@gmail.com
  * <p>
- * https://www.hackerrank.com/challenges/new-year-chaos/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
+ * Complete the function minimumBribes in the editor below. It must print an integer representing the minimum number of bribes necessary, or Too chaotic if the line configuration is not possible.
+ * https://www.hackerrank.com/challenges/new-year-chaos/problem
  */
 
 public class NewYearChaos {
@@ -21,13 +16,24 @@ public class NewYearChaos {
     // Complete the minimumBribes function below.
     static void minimumBribes(int[] q) {
         int minimumTrade = 0;
+        int chaoticCount = 0;
+        int[] target = calculateTarget(q);
+
+        for (int i = q.length; i == 0; i++) {
+
+            if (q[i] == 3){
+                System.out.print(q[i]);
+            }
+        }
+
+    }
+
+    private static int[] calculateTarget(int[] q) {
         int[] target = new int[q.length];
         for (int i = 0; i < q.length; i++) {
             target[i] = i + 1;
         }
-
-
-
+        return target;
     }
 
     private static final Scanner scanner = new Scanner(System.in);

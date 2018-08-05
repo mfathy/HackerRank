@@ -1,17 +1,21 @@
-package interview.arrays;
+package algorithms.interview.arrays;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
-public class HourglassSum {
+/**
+ * Created by Mohammed Fathy @ 04/08/2018
+ * dev.mfathy@gmail.com
+ * <p>
+ * Complete the function hourglassSum in the editor below. It should return an integer, the maximum hourglass sum in the array.
+ * https://www.hackerrank.com/challenges/2d-array/problem
+ */
+public class TwoDArrayHourglassSum {
 
     // Complete the hourglassSum function below.
-    static int hourglassSum(int[][] arr) {
+    private static int hourglassSum(int[][] arr) {
         int maxSum = 0;
         for (int i = 0; i < arr.length - 2; i++) {
             for (int j = 0; j < arr.length - 2; j++) {
@@ -34,7 +38,7 @@ public class HourglassSum {
     public static void main(String[] args) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-          int[][] arr = new int[6][6];
+        int[][] arr = new int[6][6];
 //        int[][] arr = {{1,1,1,0,0,0}, {0,1,0,0,0,0}, {1,1,1,0,0,0}, {0,0,2,4,4,0}, {0,0,0,2,0,0}, {0,0,1,2,4,0}};
 //        int[][] arr = {{-1,-1,0,-9,-2,-2}, {-2,-1,-6,-8,-2,-5}, {-1,-1,-1,-2,-3,-4}, {-1,-9,-2,-4,-4,-5}, {-7,-3,-3,-2,-9,-9}, {-1,-3,-1,-2,-4,-5}};
 
