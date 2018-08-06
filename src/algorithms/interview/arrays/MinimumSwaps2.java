@@ -1,41 +1,66 @@
 package algorithms.interview.arrays;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class MinimumSwaps2 {
 
-    // Complete the minimumSwaps function below.
-    static int minimumSwaps(int[] arr) {
+    private static int minimumSwaps(int[] arr) {
         int swapCount = 0;
-        int lastIndex = 0;
         for (int i = 0; i < arr.length; i++) {
-            lastIndex = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[i] > arr[j]) {
-                    swap(arr, i, j);
-                    if (i == lastIndex) {
-                        swapCount++;
-                        lastIndex++;
-                    }
+            if (arr[i] != i + 1) {
+                int indexToBeSwapped = findItemToBeSwapped(arr, i + 1);
+                if (indexToBeSwapped != 0) {
+                    swap(arr, i, indexToBeSwapped);
+                    swapCount++;
                 }
-
             }
         }
-
         return swapCount;
     }
 
-    private static int[] swap(int[] arr, int i, int j) {
-        int iValue = arr[i];
-        int jValue = arr[j];
-        arr[i] = jValue;
-        arr[j] = iValue;
-        return arr;
+    private static int findItemToBeSwapped(int[] arr, int i) {
+        for (int j = 0; j < arr.length; j++) {
+            if (i == arr[j]) return j;
+        }
+        return 0;
     }
 
-    public static void main(String args[]) {
-//        int[] arr = {1, 3, 5, 2, 4, 6, 8};
-//        int[] arr = {4, 3, 1, 2};
-        int[] arr = {2, 31, 1, 38, 29, 5, 44, 6, 12, 18, 39, 9, 48, 49, 13, 11, 7, 27, 14, 33, 50, 21, 46, 23, 15, 26, 8, 47, 40, 3, 32, 22, 34, 42, 16, 41, 24, 10, 4, 28, 36, 30, 37, 35, 20, 17, 45, 43, 25, 19};
-        int integer = minimumSwaps(arr);
-        System.out.println(integer);
+
+    private static void swap(int[] arr, int index1, int index2) {
+        int temp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = temp;
     }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int n = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        int[] arr = new int[n];
+
+        String[] arrItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < n; i++) {
+            int arrItem = Integer.parseInt(arrItems[i]);
+            arr[i] = arrItem;
+        }
+
+        int res = minimumSwaps(arr);
+
+        bufferedWriter.write(String.valueOf(res));
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+
 }
