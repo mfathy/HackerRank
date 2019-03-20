@@ -9,7 +9,7 @@ package algorithms.ctci.ch1.q2
 /**
  * Brutte force solution
  */
-fun isPermutation(string1: String, string2: String): Boolean{
+fun isPermutation(string1: String, string2: String): Boolean {
 
     if (string1.length != string2.length) return false
     val sortedArray1 = string1.toCharArray().sortedArray().contentToString()
@@ -19,23 +19,22 @@ fun isPermutation(string1: String, string2: String): Boolean{
 }
 
 /**
- * Using hash table
+ * Assuming that we use only ascii chars of 256.
  */
-fun isPermutationHashTable(string1: String, string2: String): Boolean{
+fun isPermutationHashTable(string1: String, string2: String): Boolean {
     if (string1.length != string2.length) return false
 
-    val mapCharCount= HashMap<Char, Int?>()
+    val letters = IntArray(256)
+
     string1.forEach { char ->
-        mapCharCount[char] = mapCharCount[char]?.plus(1)
+        letters[char.toInt()] += 1
     }
 
     string2.forEach { char ->
-        mapCharCount[char] = mapCharCount[char]?.minus(1)
+        letters[char.toInt()] -= 1
 
-        if (mapCharCount[char] == null ) return false
+        if (letters[char.toInt()] < 0) return false
     }
-
-
 
     return true
 }
